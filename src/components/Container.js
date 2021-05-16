@@ -1,12 +1,21 @@
 import React, { Component } from "react";
-import ReviewList from "./ReviewList";
+import reviewsData from "./reviewsData";
+import ReviewTotalTable from "./ReviewTotalTable";
 
 class Container extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = {
+      reviews: reviewsData,
+    };
+    console.log(this.state.reviews);
+  }
+
   render() {
     return (
       <div>
-        <ReviewList />
+        <p>hi</p>
+        <ReviewTotalTable reviews={this.state.reviews} />
       </div>
     );
   }
