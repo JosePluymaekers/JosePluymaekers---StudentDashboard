@@ -6,6 +6,7 @@ import {
   VictoryAxis,
   VictoryTheme,
   VictoryLabel,
+  VictoryGroup,
 } from "victory";
 
 class Chart extends React.Component {
@@ -16,7 +17,7 @@ class Chart extends React.Component {
     return (
       <div>
         <h1>chart here</h1>
-        <VictoryChart domainPadding={20} theme={VictoryTheme.material}>
+        <VictoryChart domainPadding={0} theme={VictoryTheme.material}>
           <VictoryAxis
             style={{
               ticks: {
@@ -28,6 +29,7 @@ class Chart extends React.Component {
                 strokeLinejoin: "round",
               },
             }}
+            standalone={false}
             tickLabelComponent={
               <VictoryLabel
                 angle={() => {
@@ -46,9 +48,9 @@ class Chart extends React.Component {
 
           <VictoryAxis
             dependentAxis
-            // tickFormat specifies how ticks should be displayed
             tickValues={[1, 2, 3, 4, 5]}
             tickFormat={(x) => `${x / 1}`}
+            standalone={false}
             style={{
               tickLabels: {
                 fontSize: 4,
@@ -56,13 +58,10 @@ class Chart extends React.Component {
               },
             }}
           />
-          <VictoryBar
-            data={tasks}
-            // data accessor for x values
-            x={"task"}
-            // // data accessor for y values
-            y={"averageDifficulty"}
-          />
+          <VictoryGroup offset={160 / tasks.length}>
+            <VictoryBar data={tasks} x={"task"} y={"averageDifficulty"} />
+            <VictoryBar data={tasks} x={"task"} y={"averageEnjoy"} />
+          </VictoryGroup>
         </VictoryChart>
       </div>
     );
